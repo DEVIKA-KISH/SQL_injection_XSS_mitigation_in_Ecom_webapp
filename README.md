@@ -54,6 +54,36 @@ db.prepare('SELECT * FROM users WHERE username = ? AND password = ?')
 | Sensitive Data Exposure | Plain text passwords   | Hashing with bcrypt (simulated)             |
 | Unvalidated Redirects   | Direct link inputs     | Safe redirect handlers                      |
 
+---
+
+## How the Vulnerabilities Were Demonstrated
+
+### 🔹 SQL Injection
+- **Scenario:** The login form directly concatenated user inputs into the SQL query.
+- **Attack Vector:** Entered payloads such as:
+  ```sql
+  ' OR '1'='1' --
+This bypassed authentication and returned all user records.
+
+Tools Used:
+Burp Suite Community Edition – for intercepting and modifying HTTP requests
+SQLite CLI – to inspect query execution and verify the injected payload
+Browser Console – to observe login bypass behavior
+
+Verification of Fix: Retested with same payloads after applying parameterized queries; authentication bypass no longer worked.
+
+Cross-Site Scripting (XSS)
+
+Scenario: Product comment section rendered user input without sanitization.
+Attack Vector: Injected payloads such as:
+<script>alert('XSS');</script>
+causing arbitrary JavaScript execution in victim browsers
+
+Tools Used:
+Burp Suite Repeater – to modify HTTP POST requests with XSS payloads
+Browser Developer Tools – to view DOM and confirm script execution
+
+Verification of Fix: Implemented input sanitization and CSP headers; re-testing confirmed payloads were safely neutralized.
 
 ##Run Locally
 
@@ -72,6 +102,7 @@ http://localhost:3000
 -Understand how injection and scripting attacks occur
 -Practice ethical exploitation and secure remediation
 -Apply OWASP Top 10 principles in a real web app
+
 
 
 Author
