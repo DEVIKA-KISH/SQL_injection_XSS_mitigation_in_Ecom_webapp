@@ -1,4 +1,4 @@
-```markdown
+
 # Secure E-Commerce Web Application – SQL Injection & XSS Mitigation
 
 This repository demonstrates **two major web security vulnerabilities** —  
