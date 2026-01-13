@@ -157,6 +157,22 @@ db.prepare('SELECT * FROM users WHERE username = ? AND password = ?')
 | Sensitive Data Exposure | Plain text credentials   | Hashing (simulated)               |
 | Unvalidated Redirects   | Direct link input        | Safe redirect handlers            |
 
+
+## 📸 Demonstration Screenshots
+
+### 🔹 SQL Injection Demonstration
+![SQL Injection Demo](screenshots/8.png)
+
+### 🔹 SQL Injection Mitigation
+![SQL Injection Mitigation](screenshots/11.png)
+
+### 🔹 XSS Demonstration
+![XSS Demo](screenshots/7.png)
+
+### 🔹 XSS Mitigation
+![XSS Mitigation](screenshots/10.png)
+
+
 ---
 
 ## Learning Outcomes
